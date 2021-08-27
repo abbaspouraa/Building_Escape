@@ -9,8 +9,6 @@ UOpenDoor::UOpenDoor()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
 }
 
 
@@ -19,8 +17,8 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// FRotator CurrentRotation = GetOwner() -> GetActorRotation();
-	// GetOwner() -> SetActorRotation(CurrentRotation.Add(0, 90, 0));
+	InitialYaw = GetOwner() -> GetActorRotation().Yaw;
+	TargetYaw = InitialYaw + 90.f;
 }
 
 
@@ -29,6 +27,10 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	UE_LOG(LogTemp, Warning, TEXT("Text, %d %f %s"), intVar, floatVar, *fstringVar );
+	
+	InitialYaw = FMath::Lerp(InitialYaw, TargetYaw , 0.02f);
+	FRotator DoorRotation = GetOwner() -> GetActorRotation();
+	DoorRotation.Yaw = InitialYaw;
+	GetOwner() -> SetActorRotation(DoorRotation);
 }
 
