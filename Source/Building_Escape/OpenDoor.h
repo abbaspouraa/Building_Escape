@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Engine/TriggerVolume.h"
 #include "OpenDoor.generated.h"
 
 
@@ -23,8 +24,31 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	void OpedDoor(float DeltaTime);
+	void CloseDoor(float DeltaTime);
 
 private:
-float TargetYaw;
-float InitialYaw;		
+
+UPROPERTY(EditAnywhere)
+float OpenAngle = 90.f;
+
+float InitialYaw;
+float CurrentYaw;
+
+UPROPERTY(EditAnywhere)
+ATriggerVolume* PressurePlate;
+
+UPROPERTY(EditAnywhere)
+AActor* ActorThatOpen;
+
+float DoorLastOpened = 0.f;
+
+UPROPERTY(EditAnywhere)
+float DoorCloseDelay = 2.f;
+
+UPROPERTY(EditAnywhere)
+float DoorOpenSpeed = 2.f;
+
+UPROPERTY(EditAnywhere)
+float DoorCloseSpeed = 0.8f;
 };
