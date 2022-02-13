@@ -10,4 +10,4 @@ Developed with Unreal Engine 4
 > - Experience with Collisions, Trigger Volumes and Line Tracing in Unreal Engine.
 
 ### Demo:
-[![Watch the video](/Video/Building_Escape-UnrealEditor202-021308-09-11.mov)]
+https://user-images.githubusercontent.com/83620288/153762228-4cfe9bdc-1d02-49a2-a790-b376e73ad504.mov
